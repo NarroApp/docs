@@ -190,7 +190,7 @@ html, body {
     }
 
     // for embossed look:
-    @include embossed-bg;
+    //@include embossed-bg;
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
     }

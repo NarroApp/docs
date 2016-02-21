@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: Narro API Reference
 
 language_tabs:
   - shell
@@ -7,8 +7,7 @@ language_tabs:
   - python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='https://www.narro.co/oauth2/clients'>Register Your Client/Application</a>
 
 includes:
   - errors
