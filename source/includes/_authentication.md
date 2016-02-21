@@ -8,7 +8,7 @@ require 'kittn'
 api = Narro::APIClient.authorize!('meowmeowmeow')
 ```
 
-```python
+```javascript
 import kittn
 
 api = kittn.authorize('meowmeowmeow')

@@ -9,7 +9,7 @@ api = Narro::APIClient.authorize!('meowmeowmeow')
 api.kittens.get
 ```
 
-```python
+```javascript
 import kittn
 
 api = kittn.authorize('meowmeowmeow')
@@ -68,7 +68,7 @@ api = Narro::APIClient.authorize!('meowmeowmeow')
 api.kittens.get(2)
 ```
 
-```python
+```javascript
 import kittn
 
 api = kittn.authorize('meowmeowmeow')

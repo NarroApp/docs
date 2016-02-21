@@ -2,9 +2,9 @@
 title: Narro API Reference
 
 language_tabs:
-  - shell
-  - ruby
-  - python
+  - shell: Shell
+  - ruby: Ruby
+  - javascript: Node.js
 
 toc_footers:
   - <a href='https://www.narro.co/oauth2/clients'>Register Your Client/Application</a>
@@ -30,8 +30,8 @@ search: true
 'https://www.narro.co/api/v1'
 ~~~
 
-~~~python
-# API endpoint:
+~~~javascript
+// API endpoint:
 'https://www.narro.co/api/v1'
 ~~~
 
