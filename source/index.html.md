@@ -2,7 +2,7 @@
 title: Narro API Reference
 
 language_tabs:
-  - shell: Shell
+  - shell: curl
   - ruby: Ruby
   - javascript: Node.js
 
@@ -13,6 +13,7 @@ toc_footers:
 includes:
   - authentication
   - articles
+  - search
   - errors
 
 search: true
