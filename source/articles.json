@@ -6,6 +6,7 @@
         { "name": "limit", "value": "1" }
     ],
     "headers": [
+        { "name": "Accept", "value": "application/json" },
         { "name": "Authorization", "value": "Bearer <access_token>" }
     ],
     "cookies": [],
