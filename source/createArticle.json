@@ -1,0 +1,14 @@
+{
+    "method": "POST",
+    "url": "https://www.narro.co/api/v1/articles",
+    "httpVersion": "HTTP/1.1",
+    "queryString": [],
+    "headers": [
+        { "name": "Authorization", "value": "Bearer <access_token>" }
+    ],
+    "cookies": [],
+    "postData": {
+        "mimeType": "application/json",
+        "text": "{\"url\": \"https://www.narro.co/faq\", \"title\": \"My Custom Title\"}"
+    }
+}
