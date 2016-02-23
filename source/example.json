@@ -1,0 +1,18 @@
+{
+    "method": "POST",
+    "url": "https://www.narro.co/api/v1",
+    "httpVersion": "HTTP/1.1",
+    "queryString": [
+        { "name": "foo", "value": "bar" },
+        { "name": "foo", "value": "baz" }
+    ],
+    "headers": [
+        { "name": "Accept", "value": "application/json" },
+        { "name": "Content-Type", "value": "application/json" }
+    ],
+    "cookies": [],
+    "postData": {
+        "mimeType": "application/json",
+        "text": "{\"foo\": \"bar\"}"
+    }
+}
