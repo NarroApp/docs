@@ -11,6 +11,6 @@
     "cookies": [],
     "postData": {
         "mimeType": "application/json",
-        "text": "{\"url\": \"https://www.narro.co/faq\", \"title\": \"My Custom Title\"}"
+        "text": "{\"url\": \"https://www.narro.co/faq\", \"title\": \"My Optional, Custom Title\"}"
     }
 }
