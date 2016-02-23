@@ -1,0 +1,11 @@
+{
+    "method": "POST",
+    "url": "https://www.narro.co/api/v1/articles/56ca50f7c1dac403006bb309",
+    "httpVersion": "HTTP/1.1",
+    "queryString": [],
+    "headers": [
+        { "name": "Authorization", "value": "Bearer <access_token>" }
+    ],
+    "cookies": [],
+    "postData": {}
+}
