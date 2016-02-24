@@ -1,0 +1,14 @@
+{
+    "method": "GET",
+    "url": "https://www.narro.co/api/v1/articles",
+    "httpVersion": "HTTP/1.1",
+    "queryString": [
+        { "name": "limit", "value": "1" }
+    ],
+    "headers": [
+        { "name": "Accept", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer <access_token>" }
+    ],
+    "cookies": [],
+    "postData": {}
+}
