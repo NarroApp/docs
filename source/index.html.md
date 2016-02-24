@@ -9,6 +9,7 @@ language_tabs:
 toc_footers:
   - <a href='https://www.narro.co/oauth2/clients'>Register Your Client/Application</a>
   - <a href='https://github.com/NarroApp/docs'>Contribute to these docs on GitHub</a>
+  - <a href='https://www.narro.co/developer/terms'>API Terms of Service</a>
 
 includes:
   - authentication
