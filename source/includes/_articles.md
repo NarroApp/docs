@@ -3,29 +3,46 @@
 ## Retrieve an Article
 
 ```ruby
-require 'rest_client'
-require 'json'
+require 'uri'
+require 'net/http'
 
-access_token = '<access_token>'
-response = RestClient.get('https://www.narro.co/api/v1/articles/56ca50f7c1dac403006bb309',
-    {:Authorization => 'Bearer ' + access_token,
-    :accept => :json})
-article = JSON.parse(response)
+url = URI("https://www.narro.co/api/v1/articles/56ca50f7c1dac403006bb309")
+
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+request = Net::HTTP::Get.new(url)
+request["accept"] = 'application/json'
+request["authorization"] = 'Bearer <access_token>'
+
+response = http.request(request)
+puts response.read_body
 ```
 
 ```javascript
-var request = require('request');
+var request = require("request");
 
-request.get('https://www.narro.co/api/v1/articles/56ca50f7c1dac403006bb309',
-    {auth: {bearer: '<access_token>'}},
-function(error, request, body) {
-    var article = JSON.parse(body);
+var options = {
+    method: 'GET',
+    url: 'https://www.narro.co/api/v1/articles/56ca50f7c1dac403006bb309',
+    headers: {
+        authorization: 'Bearer <access_token>',
+        accept: 'application/json'
+    }
+};
+
+request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+    console.log(body);
 });
 ```
 
 ```shell
-curl "https://www.narro.co/api/v1/articles/56ca50f7c1dac403006bb309" \
-    -H "Authorization: Bearer <access_token>"
+curl --request GET \
+    --url https://www.narro.co/api/v1/articles/56ca50f7c1dac403006bb309 \
+    --header 'accept: application/json' \
+    --header 'authorization: Bearer <access_token>'
 ```
 
 > Example response:
@@ -130,29 +147,49 @@ voiceName | string | The voice used to read this article
 ## List All Articles
 
 ```ruby
-require 'rest_client'
-require 'json'
+require 'uri'
+require 'net/http'
 
-access_token = '<access_token>'
-response = RestClient.get('https://www.narro.co/api/v1/articles',
-    {:Authorization => 'Bearer ' + access_token,
-    :accept => :json})
-articles = JSON.parse(response)['data']
+url = URI("https://www.narro.co/api/v1/articles?limit=1")
+
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+request = Net::HTTP::Get.new(url)
+request["accept"] = 'application/json'
+request["authorization"] = 'Bearer <access_token>'
+
+response = http.request(request)
+puts response.read_body
 ```
 
 ```javascript
-var request = require('request');
+var request = require("request");
 
-request.get('https://www.narro.co/api/v1/articles',
-    {auth: {bearer: '<access_token>'}},
-function(error, request, body) {
-    var articles = JSON.parse(body).data;
+var options = {
+    method: 'GET',
+    url: 'https://www.narro.co/api/v1/articles',
+    qs: {
+        limit: '1'
+    },
+    headers: {
+        authorization: 'Bearer <access_token>',
+        accept: 'application/json'
+    }
+};
+
+request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+    console.log(body);
 });
 ```
 
 ```shell
-curl "https://www.narro.co/api/v1/articles" \
-    -H "Authorization: Bearer <access_token>"
+curl --request GET \
+    --url 'https://www.narro.co/api/v1/articles?limit=1' \
+    --header 'accept: application/json' \
+    --header 'authorization: Bearer <access_token>'
 ```
 
 > Example response:
@@ -203,7 +240,7 @@ limit | 20 | If specified, resulting dataset will be limited to count.
 skip | 0 | If specified, resulting dataset will skip first <n> records.
 
 <aside class="info">
-Remember — Article objects returned via this endpoint will not contain extracted links and topics.
+Remember — For attributes, see <a href="#retrieve-an-article">Retrieve an Article</a>. Article objects returned via this endpoint will not contain extracted links and topics.
 </aside>
 
 ## Article Submission
@@ -258,6 +295,19 @@ curl --request POST \
     --header 'authorization: Bearer <access_token>' \
     --header 'content-type: application/json' \
     --data '{"url": "https://www.narro.co/faq", "title": "My Optional, Custom Title"}'
+~~~
+
+> Example response:
+
+~~~json
+{
+    "data": [
+        {
+            "_id": "56ca50f7c1dac403006bb309"
+        }
+    ],
+    "meta": {}
+}
 ~~~
 
 Create an article for any web page that you would like to hear! The article must be located at a publicly accessible URL. The article text will be automatically extracted, and read in the voice (or one of the voices in a selected rotation) selected by the user. The written language of the article will be automatically detected by sample, and an appropriate voice will be selected if the language is not native to the user.
