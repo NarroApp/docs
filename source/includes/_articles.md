@@ -90,6 +90,8 @@ curl "https://www.narro.co/api/v1/articles/56ca50f7c1dac403006bb309" \
 
 Retrieves the details of an article that has previously been created. Supply the unique article ID that was returned from your previous request, and Narro will return the corresponding article information. A subset of this information is returned when creating or listing the article.
 
+See [an example request in _many_ languages](https://api.apiembed.com/?source=https://github.com/NarroApp/docs/raw/master/source/har/article.json&targets=all).
+
 ### HTTP Request
 
 `GET https://www.narro.co/api/v1/articles/<ID>`
@@ -187,6 +189,8 @@ curl "https://www.narro.co/api/v1/articles" \
 
 Returns a list of articles previously created by the user. The articles are returned in sorted order, with the most recent articles appearing first.
 
+See [an example request in _many_ languages](https://api.apiembed.com/?source=https://github.com/NarroApp/docs/raw/master/source/har/articles.json&targets=all).
+
 ### HTTP Request
 
 `GET https://www.narro.co/api/v1/articles`
@@ -204,4 +208,71 @@ Remember — Article objects returned via this endpoint will not contain extract
 
 ## Article Submission
 
-## Plain-text Submission
+~~~ruby
+require 'uri'
+require 'net/http'
+
+url = URI("https://www.narro.co/api/v1/articles")
+
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+request = Net::HTTP::Post.new(url)
+request["accept"] = 'application/json'
+request["content-type"] = 'application/json'
+request["authorization"] = 'Bearer <access_token>'
+request.body = "{\"url\": \"https://www.narro.co/faq\", \"title\": \"My Optional, Custom Title\"}"
+
+response = http.request(request)
+puts response.read_body
+~~~
+
+~~~javascript
+var request = require("request");
+
+var options = { method: 'POST',
+    url: 'https://www.narro.co/api/v1/articles',
+    headers: {
+        authorization: 'Bearer <access_token>',
+        'content-type': 'application/json',
+        accept: 'application/json'
+    },
+    body: {
+        url: 'https://www.narro.co/faq',
+        title: 'My Optional, Custom Title'
+    },
+    json: true
+};
+
+request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+    console.log(body);
+});
+~~~
+
+~~~shell
+curl --request POST \
+    --url https://www.narro.co/api/v1/articles \
+    --header 'accept: application/json' \
+    --header 'authorization: Bearer <access_token>' \
+    --header 'content-type: application/json' \
+    --data '{"url": "https://www.narro.co/faq", "title": "My Optional, Custom Title"}'
+~~~
+
+Create an article for any web page that you would like to hear! The article must be located at a publicly accessible URL. The article text will be automatically extracted, and read in the voice (or one of the voices in a selected rotation) selected by the user. The written language of the article will be automatically detected by sample, and an appropriate voice will be selected if the language is not native to the user.
+
+See [an example article request in _many_ languages](https://api.apiembed.com/?source=https://github.com/NarroApp/docs/raw/master/source/har/createArticle.json&targets=all).
+See [an example plain-text request in _many_ languages](https://api.apiembed.com/?source=https://github.com/NarroApp/docs/raw/master/source/har/createText.json&targets=all).
+
+### HTTP Request
+
+`POST https://www.narro.co/api/v1/articles`
+
+### Body Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+url | string | The publicly accessible URL for content to be read. This field is **required** unless `text` is specified.
+title | string | If specified, this string will be used as the `title` of the resulting `article`.
+text | string | If specified, this field's value will be read. This will override any content residing at the `url`. Please choose to pass _either_ `url` or `text`.
