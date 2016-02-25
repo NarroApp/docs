@@ -620,7 +620,23 @@ See <a href="https://api.apiembed.com/?source=https://github.com/NarroApp/docs/r
 
           <h1 id="search">Search</h1>
 
+<p>Documentation coming soon.</p>
+
           <h1 id="errors">Errors</h1>
+
+<blockquote>
+<p>Example error response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid URL provided."</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>When possible, the Narro API will return an <code class="prettyprint">errors</code> array if your request produced an error. Each object in the array will have, at minimum, a <code class="prettyprint">message</code> field. A <code class="prettyprint">data</code> array will <em>not</em> be returned on erroneous requests.</p>
 
 <p>The Narro API uses the following error codes:</p>
 
