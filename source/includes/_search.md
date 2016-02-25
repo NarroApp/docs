@@ -1,1 +1,3 @@
 # Search
+
+Documentation coming soon.

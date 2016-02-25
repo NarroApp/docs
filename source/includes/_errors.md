@@ -1,5 +1,19 @@
 # Errors
 
+> Example error response:
+
+~~~json
+{
+    "errors": [
+        {
+            "message": "Invalid URL provided."
+        }
+    ]
+}
+~~~
+
+When possible, the Narro API will return an `errors` array if your request produced an error. Each object in the array will have, at minimum, a `message` field. A `data` array will _not_ be returned on erroneous requests.
+
 The Narro API uses the following error codes:
 
 Error Code | Meaning
