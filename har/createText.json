@@ -1,0 +1,16 @@
+{
+    "method": "POST",
+    "url": "https://www.narro.co/api/v1/articles",
+    "httpVersion": "HTTP/1.1",
+    "queryString": [],
+    "headers": [
+        { "name": "Accept", "value": "application/json" },
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer <access_token>" }
+    ],
+    "cookies": [],
+    "postData": {
+        "mimeType": "application/json",
+        "text": "{\"text\": \"Mind your words, they are important. Speak like a human.\", \"title\": \"My Optional, Custom Title\"}"
+    }
+}
