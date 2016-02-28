@@ -1,0 +1,15 @@
+{
+    "method": "GET",
+    "url": "https://www.narro.co/api/v1/search/articles",
+    "httpVersion": "HTTP/1.1",
+    "queryString": [
+        { "name": "limit", "value": "2" },
+        { "name": "term", "value": "Trump" }
+    ],
+    "headers": [
+        { "name": "Accept", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer <access_token>" }
+    ],
+    "cookies": [],
+    "postData": {}
+}
