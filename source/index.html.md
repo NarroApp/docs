@@ -10,9 +10,11 @@ toc_footers:
   - <a href='https://www.narro.co/oauth2/clients'>Register Your Client/Application</a>
   - <a href='https://github.com/NarroApp/docs'>Contribute to these docs on GitHub</a>
   - <a href='https://www.narro.co/developer/terms'>API Terms of Service</a>
+  - <a href='http://status.narro.co'>Status Page</a>
 
 includes:
   - authentication
+  - account
   - articles
   - search
   - errors

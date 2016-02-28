@@ -49,59 +49,29 @@ curl --request GET \
 
 ```json
 {
-    "_id": "56ca50f7c1dac403006bb309",
-    "accountId": "540cc8cb48e3e80200000001",
     "active": true,
-    "canonical": "https://en.wikipedia.org/wiki/Banksia_aemula",
-    "created": "2016-02-22T00:06:44.746Z",
-    "description": "Banksia aemula\nBanksia elatior\nR. Br.\nBanksia aemula, commonly known as the wallum banksia, is a lignotuberous shrub of the family Proteaceae . Found ...",
-    "favicon": "/static/favicon/wikipedia.ico",
-    "hardURL": "https://en.wikipedia.org/wiki/Banksia_aemula",
-    "image": null,
-    "lang": "en-US",
+    "audio": {
+        "length": 77.635918,
+        "url": "https://s3.amazonaws.com/nareta-articles/accounts/540cc8cb48e3e80200000001/145669484056d366369ba562.mp3",
+        "voice": "Ava"
+    },
+    "created": "2016-02-28T21:27:18.724Z",
+    "description": "Narro is the simple way to listen to the web - a text to speech podcast app. Narro will take your bookmarked articles and read them back to you as a podcast.",
+    "favicon": "https://www.narro.co/images/favicon.png",
+    "id": "56d36633b40e600300583bfb",
+    "image": "http://www.narro.co/images/narro.png",
+    "language": "en-US",
     "links": [
         {
-            "_id": "56ca5114c1dac403006bb347",
-            "href": "/wiki/Lignotuber",
-            "text": "lignotuberous"
-        },
-        {
-            "_id": "56ca5114c1dac403006bb346",
-            "href": "/wiki/Shrub",
-            "text": "shrub"
+            "href": "https://www.narro.co/contact",
+            "text": "contact us"
         }
     ],
-    "modified": "2016-02-22T00:06:44.746Z",
-    "mp3Length": 1394.99102,
-    "mp3URL": "https://s3.amazonaws.com/nareta-articles/audio/540cc8cb48e3e80200000001/86c88170-26a7-4de2-c98e-c7356b77b2aa.mp3",
+    "location": "https://www.narro.co/article/56d36633b40e600300583bfb",
     "preview": false,
-    "star": false,
-    "title": "Banksia aemula",
-    "topics": [
-        {
-            "_id": "56ca5114c1dac403006bb30f",
-            "score": 1,
-            "stem": "banksia"
-        },
-        {
-            "_id": "56ca5114c1dac403006bb30e",
-            "score": 0.7,
-            "stem": "aemula"
-        },
-        {
-            "_id": "56ca5114c1dac403006bb30d",
-            "score": 0.3142857142857143,
-            "stem": "speci"
-        },
-        {
-            "_id": "56ca5114c1dac403006bb30c",
-            "score": 0.2,
-            "stem": "flower"
-        }
-    ],
-    "url": "https://en.wikipedia.org/wiki/Banksia_aemula",
-    "via": "ifttt",
-    "voiceName": "Salli"
+    "title": "My Optional, Custom Title",
+    "url": "https://www.narro.co/faq",
+    "via": "api"
 }
 ```
 
@@ -123,26 +93,22 @@ ID | The ID of the article to retrieve
 
 Name | Type | Description
 ---- | ---- | -----------
-_id | string | Unique ID for this article resource
 active | boolean | Indicates whether this article is available in the user's podcast feed
-canonical | string | Extracted canonical URL for this article (Absent for plain-text readings)
-created | timestamp | 
-description | string |
+audio.url | string | URL to the article's audio MP3 file
+audio.length | number | Length of article MP3, in seconds
+audio.voice | string | Voice used to read article
+created | timestamp | ISO-formatted creation datetime
+description | string | Extracted article description
 favicon | string | Path to the article's publisher's favicon (Absent for plain-text readings)
-hardURL | string | URL of this article, stripped of query parameters (Absent for plain-text readings)
+id | string | Unique ID for this article resource
 image | string | If found during extraction, an image representing the article
-lang | string | Detected language of this article
-links | object | Extracted links from the article text, each comprising an href string and text sring (Absent for plain-text readings)
-modified | timestamp | 
-mp3URL | string | URL to the article's audio MP3 file
-mp3Length | number | Length of article MP3, in seconds
+language | string | Detected language of this article
+links | array | Extracted links from the article text, each comprising an href string and text sring (Absent for plain-text readings)
+location | string | Location of this article within Narro's site
 preview | boolean | Indicates whether this article was read in "preview" mode, which truncates the reading
-star | boolean | Indicates whether the user has starred or otherwise favorited this article
 title | string | Extracted or provided article title
-topics | object | Extracted topics from the article text, each comprising a score number and stem string
-url | string | The original URL provided for this article (Absent for plain-text readings)
+url | string | The original URL provided for this article
 via | string | The source through which the article was submitted to Narro
-voiceName | string | The voice used to read this article
 
 ## List All Articles
 
@@ -198,28 +164,28 @@ curl --request GET \
 {
     "data": [
         {
-            "_id": "56ca50f7c1dac403006bb309",
             "active": true,
-            "canonical": "https://en.wikipedia.org/wiki/Banksia_aemula",
-            "created": "2016-02-22T00:06:44.746Z",
-            "description": "Banksia aemula\nBanksia elatior\nR. Br.\nBanksia aemula, commonly known as the wallum banksia, is a lignotuberous shrub of the family Proteaceae . Found ...",
-            "favicon": "/static/favicon/wikipedia.ico",
-            "hardURL": "https://en.wikipedia.org/wiki/Banksia_aemula",
-            "image": null,
-            "lang": "en-US",
-            "modified": "2016-02-22T00:06:44.746Z",
-            "mp3Length": 1394.99102,
-            "mp3URL": "https://s3.amazonaws.com/nareta-articles/audio/540cc8cb48e3e80200000001/86c88170-26a7-4de2-c98e-c7356b77b2aa.mp3",
+            "audio": {
+                "length": 77.635918,
+                "url": "https://s3.amazonaws.com/nareta-articles/accounts/540cc8cb48e3e80200000001/145669484056d366369ba562.mp3",
+                "voice": "Ava"
+            },
+            "created": "2016-02-28T21:27:18.724Z",
+            "description": "Narro is the simple way to listen to the web - a text to speech podcast app. Narro will take your bookmarked articles and read them back to you as a podcast.",
+            "favicon": "https://www.narro.co/images/favicon.png",
+            "id": "56d36633b40e600300583bfb",
+            "image": "http://www.narro.co/images/narro.png",
+            "language": "en-US",
+            "links": [],
+            "location": "https://www.narro.co/article/56d36633b40e600300583bfb",
             "preview": false,
-            "star": false,
-            "title": "Banksia aemula",
-            "url": "https://en.wikipedia.org/wiki/Banksia_aemula",
-            "via": "ifttt",
-            "voiceName": "Salli"
+            "title": "My Optional, Custom Title",
+            "url": "https://www.narro.co/faq",
+            "via": "api"
         }
     ],
     "meta": {
-        "next": "/api/v1/articles?limit=20&skip=1"
+        "next": "/api/v1/articles?limit=1&skip=1"
     }
 }
 ```
@@ -240,7 +206,7 @@ limit | 20 | If specified, resulting dataset will be limited to count.
 skip | 0 | If specified, resulting dataset will skip first <n> records.
 
 <aside class="info">
-Remember — For attributes, see <a href="#retrieve-an-article">Retrieve an Article</a>. Article objects returned via this endpoint will not contain extracted links and topics.
+Remember — For attributes, see <a href="#retrieve-an-article">Retrieve an Article</a>. Article objects returned via this endpoint will not contain extracted links.
 </aside>
 
 ## Article Submission
@@ -303,7 +269,22 @@ curl --request POST \
 {
     "data": [
         {
-            "_id": "56ca50f7c1dac403006bb309"
+            "active": true,
+            "audio": {
+                "url": null
+            },
+            "created": "2016-02-28T21:27:15.409Z",
+            "description": "Narro is the simple way to listen to the web - a text to speech podcast app. Narro will take your bookmarked articles and read them back to you as a podcast.",
+            "favicon": "https://www.narro.co/images/favicon.png",
+            "id": "56d36633b40e600300583bfb",
+            "image": "http://www.narro.co/images/narro.png",
+            "language": "en-US",
+            "links": [],
+            "location": "https://www.narro.co/article/56d36633b40e600300583bfb",
+            "preview": false,
+            "title": "My Optional, Custom Title",
+            "url": "https://www.narro.co/faq",
+            "via": "api"
         }
     ],
     "meta": {}
@@ -326,3 +307,7 @@ Parameter | Type | Description
 url | string | The publicly accessible URL for content to be read. This field is **required** unless `text` is specified.
 title | string | If specified, this string will be used as the `title` of the resulting `article`.
 text | string | If specified, this field's value will be read. This will override any content residing at the `url`. Please choose to pass _either_ `url` or `text`.
+
+<aside class="info">
+Remember — For attributes, see <a href="#retrieve-an-article">Retrieve an Article</a>. Article objects returned via this endpoint will not contain audio data yet.
+</aside>
