@@ -1,0 +1,12 @@
+{
+    "method": "GET",
+    "url": "https://www.narro.co/api/v1/account",
+    "httpVersion": "HTTP/1.1",
+    "queryString": [],
+    "headers": [
+        { "name": "Accept", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer <access_token>" }
+    ],
+    "cookies": [],
+    "postData": {}
+}

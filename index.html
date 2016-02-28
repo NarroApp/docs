@@ -115,6 +115,7 @@
             <li><a href='https://www.narro.co/oauth2/clients'>Register Your Client/Application</a></li>
             <li><a href='https://github.com/NarroApp/docs'>Contribute to these docs on GitHub</a></li>
             <li><a href='https://www.narro.co/developer/terms'>API Terms of Service</a></li>
+            <li><a href='http://status.narro.co'>Status Page</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -181,6 +182,138 @@
 
 <p>If you would like to view an example application/server implementing the OAuth2 flow with Narro&rsquo;s API, we have provided <a href="https://github.com/NarroApp/platform-samples/tree/master/api/ruby/oauth2">an example in our platform_samples repository</a>.</p>
 
+          <h1 id="account">Account</h1>
+
+<h2 id="retrieve-account-details">Retrieve Account Details</h2>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'uri'</span>
+<span class="nb">require</span> <span class="s1">'net/http'</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"https://www.narro.co/api/v1/account"</span><span class="p">)</span>
+
+<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">url</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+<span class="n">http</span><span class="p">.</span><span class="nf">use_ssl</span> <span class="o">=</span> <span class="kp">true</span>
+<span class="n">http</span><span class="p">.</span><span class="nf">verify_mode</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">SSL</span><span class="o">::</span><span class="no">VERIFY_NONE</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">request</span><span class="p">[</span><span class="s2">"accept"</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'application/json'</span>
+<span class="n">request</span><span class="p">[</span><span class="s2">"authorization"</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Bearer &lt;access_token&gt;'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">response</span><span class="p">.</span><span class="nf">read_body</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"request"</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">method</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">'https://www.narro.co/api/v1/account'</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">authorization</span><span class="p">:</span> <span class="s1">'Bearer &lt;access_token&gt;'</span><span class="p">,</span>
+        <span class="na">accept</span><span class="p">:</span> <span class="s1">'application/json'</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">request</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<pre class="highlight shell"><code>curl --request GET <span class="se">\</span>
+    --url https://www.narro.co/api/v1/account<span class="se">\</span>
+    --header <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+    --header <span class="s1">'authorization: Bearer &lt;access_token&gt;'</span>
+</code></pre>
+
+<blockquote>
+<p>Example response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"confirmed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-12-02T02:11:53.250Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accountid123456789"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-28T20:18:24.349Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pro"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"vanity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vanity123"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"voices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en-US"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joey"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Female"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en-US"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ava"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Retrieves the details of the authenticating user&rsquo;s account.</p>
+
+<p>See <a href="https://api.apiembed.com/?source=https://github.com/NarroApp/docs/raw/master/source/har/account.json&amp;targets=all">an example request in <em>many</em> languages</a>.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://www.narro.co/api/v1/account</code></p>
+
+<h3 id="attributes">Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>confirmed</td>
+<td>boolean</td>
+<td>Indicated whether the account has been confirmed via email</td>
+</tr>
+<tr>
+<td>created</td>
+<td>timestamp</td>
+<td>Creation date, formatted to ISO datetime</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Account&rsquo;s recorded email address</td>
+</tr>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>Unique ID for this account resource</td>
+</tr>
+<tr>
+<td>image</td>
+<td>string</td>
+<td>Optional image used in account&rsquo;s public podcast syndication</td>
+</tr>
+<tr>
+<td>modified</td>
+<td>timestamp</td>
+<td>Date of last modification, formatted to ISO datetime</td>
+</tr>
+<tr>
+<td>pro</td>
+<td>boolean</td>
+<td>Indicates whether the account is Pro-level</td>
+</tr>
+<tr>
+<td>vanity</td>
+<td>string</td>
+<td>Unique ID used for the account&rsquo;s public podcast URL</td>
+</tr>
+<tr>
+<td>voices</td>
+<td>array</td>
+<td>Chosen voices to be used for readings under this account</td>
+</tr>
+</tbody></table>
+
           <h1 id="articles">Articles</h1>
 
 <h2 id="retrieve-an-article">Retrieve an Article</h2>
@@ -226,59 +359,29 @@
 <p>Example response:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56ca50f7c1dac403006bb309"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"540cc8cb48e3e80200000001"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"canonical"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://en.wikipedia.org/wiki/Banksia_aemula"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-22T00:06:44.746Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banksia aemula\nBanksia elatior\nR. Br.\nBanksia aemula, commonly known as the wallum banksia, is a lignotuberous shrub of the family Proteaceae . Found ..."</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"favicon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/static/favicon/wikipedia.ico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"hardURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://en.wikipedia.org/wiki/Banksia_aemula"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en-US"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"audio"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mf">77.635918</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/nareta-articles/accounts/540cc8cb48e3e80200000001/145669484056d366369ba562.mp3"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"voice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ava"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-28T21:27:18.724Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Narro is the simple way to listen to the web - a text to speech podcast app. Narro will take your bookmarked articles and read them back to you as a podcast."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"favicon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.narro.co/images/favicon.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56d36633b40e600300583bfb"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.narro.co/images/narro.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en-US"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56ca5114c1dac403006bb347"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/wiki/Lignotuber"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lignotuberous"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56ca5114c1dac403006bb346"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/wiki/Shrub"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shrub"</span><span class="w">
+            </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.narro.co/contact"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contact us"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-22T00:06:44.746Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"mp3Length"</span><span class="p">:</span><span class="w"> </span><span class="mf">1394.99102</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"mp3URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/nareta-articles/audio/540cc8cb48e3e80200000001/86c88170-26a7-4de2-c98e-c7356b77b2aa.mp3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.narro.co/article/56d36633b40e600300583bfb"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"preview"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"star"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banksia aemula"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56ca5114c1dac403006bb30f"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"stem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"banksia"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56ca5114c1dac403006bb30e"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"stem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aemula"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56ca5114c1dac403006bb30d"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3142857142857143</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"stem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"speci"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56ca5114c1dac403006bb30c"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"stem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flower"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://en.wikipedia.org/wiki/Banksia_aemula"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ifttt"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"voiceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Salli"</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Optional, Custom Title"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.narro.co/faq"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -314,29 +417,34 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>_id</td>
-<td>string</td>
-<td>Unique ID for this article resource</td>
-</tr>
-<tr>
 <td>active</td>
 <td>boolean</td>
 <td>Indicates whether this article is available in the user&rsquo;s podcast feed</td>
 </tr>
 <tr>
-<td>canonical</td>
+<td>audio.url</td>
 <td>string</td>
-<td>Extracted canonical URL for this article (Absent for plain-text readings)</td>
+<td>URL to the article&rsquo;s audio MP3 file</td>
+</tr>
+<tr>
+<td>audio.length</td>
+<td>number</td>
+<td>Length of article MP3, in seconds</td>
+</tr>
+<tr>
+<td>audio.voice</td>
+<td>string</td>
+<td>Voice used to read article</td>
 </tr>
 <tr>
 <td>created</td>
 <td>timestamp</td>
-<td></td>
+<td>ISO-formatted creation datetime</td>
 </tr>
 <tr>
 <td>description</td>
 <td>string</td>
-<td></td>
+<td>Extracted article description</td>
 </tr>
 <tr>
 <td>favicon</td>
@@ -344,9 +452,9 @@
 <td>Path to the article&rsquo;s publisher&rsquo;s favicon (Absent for plain-text readings)</td>
 </tr>
 <tr>
-<td>hardURL</td>
+<td>id</td>
 <td>string</td>
-<td>URL of this article, stripped of query parameters (Absent for plain-text readings)</td>
+<td>Unique ID for this article resource</td>
 </tr>
 <tr>
 <td>image</td>
@@ -354,29 +462,19 @@
 <td>If found during extraction, an image representing the article</td>
 </tr>
 <tr>
-<td>lang</td>
+<td>language</td>
 <td>string</td>
 <td>Detected language of this article</td>
 </tr>
 <tr>
 <td>links</td>
-<td>object</td>
+<td>array</td>
 <td>Extracted links from the article text, each comprising an href string and text sring (Absent for plain-text readings)</td>
 </tr>
 <tr>
-<td>modified</td>
-<td>timestamp</td>
-<td></td>
-</tr>
-<tr>
-<td>mp3URL</td>
+<td>location</td>
 <td>string</td>
-<td>URL to the article&rsquo;s audio MP3 file</td>
-</tr>
-<tr>
-<td>mp3Length</td>
-<td>number</td>
-<td>Length of article MP3, in seconds</td>
+<td>Location of this article within Narro&rsquo;s site</td>
 </tr>
 <tr>
 <td>preview</td>
@@ -384,34 +482,19 @@
 <td>Indicates whether this article was read in &ldquo;preview&rdquo; mode, which truncates the reading</td>
 </tr>
 <tr>
-<td>star</td>
-<td>boolean</td>
-<td>Indicates whether the user has starred or otherwise favorited this article</td>
-</tr>
-<tr>
 <td>title</td>
 <td>string</td>
 <td>Extracted or provided article title</td>
 </tr>
 <tr>
-<td>topics</td>
-<td>object</td>
-<td>Extracted topics from the article text, each comprising a score number and stem string</td>
-</tr>
-<tr>
 <td>url</td>
 <td>string</td>
-<td>The original URL provided for this article (Absent for plain-text readings)</td>
+<td>The original URL provided for this article</td>
 </tr>
 <tr>
 <td>via</td>
 <td>string</td>
 <td>The source through which the article was submitted to Narro</td>
-</tr>
-<tr>
-<td>voiceName</td>
-<td>string</td>
-<td>The voice used to read this article</td>
 </tr>
 </tbody></table>
 
@@ -463,28 +546,28 @@
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56ca50f7c1dac403006bb309"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"canonical"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://en.wikipedia.org/wiki/Banksia_aemula"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-22T00:06:44.746Z"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banksia aemula\nBanksia elatior\nR. Br.\nBanksia aemula, commonly known as the wallum banksia, is a lignotuberous shrub of the family Proteaceae . Found ..."</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"favicon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/static/favicon/wikipedia.ico"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"hardURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://en.wikipedia.org/wiki/Banksia_aemula"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en-US"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-22T00:06:44.746Z"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"mp3Length"</span><span class="p">:</span><span class="w"> </span><span class="mf">1394.99102</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"mp3URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/nareta-articles/audio/540cc8cb48e3e80200000001/86c88170-26a7-4de2-c98e-c7356b77b2aa.mp3"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"audio"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mf">77.635918</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/nareta-articles/accounts/540cc8cb48e3e80200000001/145669484056d366369ba562.mp3"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"voice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ava"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-28T21:27:18.724Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Narro is the simple way to listen to the web - a text to speech podcast app. Narro will take your bookmarked articles and read them back to you as a podcast."</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"favicon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.narro.co/images/favicon.png"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56d36633b40e600300583bfb"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.narro.co/images/narro.png"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en-US"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.narro.co/article/56d36633b40e600300583bfb"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"preview"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"star"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banksia aemula"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://en.wikipedia.org/wiki/Banksia_aemula"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ifttt"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"voiceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Salli"</span><span class="w">
+            </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Optional, Custom Title"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.narro.co/faq"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/v1/articles?limit=20&amp;skip=1"</span><span class="w">
+        </span><span class="nt">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/v1/articles?limit=1&amp;skip=1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -519,7 +602,7 @@
 </tbody></table>
 
 <aside class="info">
-Remember — For attributes, see <a href="#retrieve-an-article">Retrieve an Article</a>. Article objects returned via this endpoint will not contain extracted links and topics.
+Remember — For attributes, see <a href="#retrieve-an-article">Retrieve an Article</a>. Article objects returned via this endpoint will not contain extracted links.
 </aside>
 
 <h2 id="article-submission">Article Submission</h2>
@@ -576,7 +659,22 @@ Remember — For attributes, see <a href="#retrieve-an-article">Retrieve an Arti
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56ca50f7c1dac403006bb309"</span><span class="w">
+            </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"audio"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-28T21:27:15.409Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Narro is the simple way to listen to the web - a text to speech podcast app. Narro will take your bookmarked articles and read them back to you as a podcast."</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"favicon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.narro.co/images/favicon.png"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56d36633b40e600300583bfb"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.narro.co/images/narro.png"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en-US"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.narro.co/article/56d36633b40e600300583bfb"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"preview"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Optional, Custom Title"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.narro.co/faq"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
@@ -617,6 +715,10 @@ See <a href="https://api.apiembed.com/?source=https://github.com/NarroApp/docs/r
 <td>If specified, this field&rsquo;s value will be read. This will override any content residing at the <code class="prettyprint">url</code>. Please choose to pass <em>either</em> <code class="prettyprint">url</code> or <code class="prettyprint">text</code>.</td>
 </tr>
 </tbody></table>
+
+<aside class="info">
+Remember — For attributes, see <a href="#retrieve-an-article">Retrieve an Article</a>. Article objects returned via this endpoint will not contain audio data yet.
+</aside>
 
           <h1 id="search">Search</h1>
 
