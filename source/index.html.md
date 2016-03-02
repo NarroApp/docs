@@ -1,5 +1,5 @@
 ---
-title: Narro API Reference
+title: Narro API Reference Docs
 
 language_tabs:
   - shell: curl
@@ -39,7 +39,7 @@ search: true
 'https://www.narro.co/api/v1'
 ~~~
 
-Welcome to the Narro API! You can use our API to access articles and readings, as well as submit them on behalf of customers.
+Welcome to the Narro API documentation! You can use our API to access articles and readings, as well as submit them on behalf of customers.
 
 The Narro PI is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. We support [cross-origin resource sharing](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing), allowing you to interact securely with our API from a client-side web application (though you should never expose your secret API key in any public website's client-side code). [JSON](http://www.json.org/) is returned by all API responses, including errors, although [our API libraries](https://github.com/narroapp) convert responses to appropriate language-specific objects.
 
