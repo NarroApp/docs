@@ -95,7 +95,7 @@ curl --request GET \
 }
 ```
 
-Given a search term, retrieve articles containing that term. A search term can be any combination of words extracted from the article body.
+Given a search term, retrieve the authenticating user's articles containing that term. A search term can be any combination of words extracted from the article body.
 
 See [an example request in _many_ languages](https://api.apiembed.com/?source=https://github.com/NarroApp/docs/raw/master/source/har/searchArticles.json&targets=all).
 

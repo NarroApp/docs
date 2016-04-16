@@ -17,6 +17,7 @@ includes:
   - account
   - articles
   - search
+  - fit
   - errors
 
 search: true
