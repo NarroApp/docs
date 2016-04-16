@@ -1,0 +1,15 @@
+{
+    "method": "GET",
+    "url": "https://www.narro.co/api/v1/fit",
+    "httpVersion": "HTTP/1.1",
+    "queryString": [
+        { "name": "time", "value": "60" },
+        { "name": "topic", "value": "Trump" }
+    ],
+    "headers": [
+        { "name": "Accept", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer <access_token>" }
+    ],
+    "cookies": [],
+    "postData": {}
+}
