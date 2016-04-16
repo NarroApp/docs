@@ -1,4 +1,4 @@
-# Fit
+# Article to Fit
 
 ## Find a Fitting Article
 
