@@ -235,6 +235,7 @@
     </span><span class="nt">"modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-28T20:18:24.349Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"pro"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"vanity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vanity123"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"voices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
@@ -312,6 +313,11 @@
 <td>array</td>
 <td>Chosen voices to be used for readings under this account</td>
 </tr>
+<tr>
+<td>rate</td>
+<td>number</td>
+<td>Chosen rate for readings under this account</td>
+</tr>
 </tbody></table>
 
           <h1 id="articles">Articles</h1>
@@ -363,7 +369,8 @@
     </span><span class="nt">"audio"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mf">77.635918</span><span class="p">,</span><span class="w">
         </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/nareta-articles/accounts/540cc8cb48e3e80200000001/145669484056d366369ba562.mp3"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"voice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ava"</span><span class="w">
+        </span><span class="nt">"voice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ava"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-28T21:27:18.724Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Narro is the simple way to listen to the web - a text to speech podcast app. Narro will take your bookmarked articles and read them back to you as a podcast."</span><span class="p">,</span><span class="w">
@@ -430,6 +437,11 @@
 <td>audio.length</td>
 <td>number</td>
 <td>Length of article MP3, in seconds</td>
+</tr>
+<tr>
+<td>audio.rate</td>
+<td>number</td>
+<td>Reading rate of article, expressed in ratio to &lsquo;normal&rsquo;</td>
 </tr>
 <tr>
 <td>audio.voice</td>
@@ -550,7 +562,8 @@
             </span><span class="nt">"audio"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mf">77.635918</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/nareta-articles/accounts/540cc8cb48e3e80200000001/145669484056d366369ba562.mp3"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"voice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ava"</span><span class="w">
+                </span><span class="nt">"voice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ava"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-28T21:27:18.724Z"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Narro is the simple way to listen to the web - a text to speech podcast app. Narro will take your bookmarked articles and read them back to you as a podcast."</span><span class="p">,</span><span class="w">
@@ -771,7 +784,8 @@ Remember — For attributes, see <a href="#retrieve-an-article">Retrieve an Arti
             </span><span class="nt">"audio"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mf">332.956735</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/nareta-articles/audio/540cc8cb48e3e80200000001/30460753-b4b5-468d-8a4d-dabcb384dc1a.mp3"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"voice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Salli"</span><span class="w">
+                </span><span class="nt">"voice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Salli"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-23T17:31:11.925Z"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"By Miranda Popkey \u00a0 \u00a0\n\u00a0\u00a0\nCyclone Winston, the second most powerful storm ever recorded in the South Pacific, made landfall in Fiji with 40-foot waves ..."</span><span class="p">,</span><span class="w">
@@ -790,7 +804,8 @@ Remember — For attributes, see <a href="#retrieve-an-article">Retrieve an Arti
             </span><span class="nt">"audio"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mf">65.201633</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/nareta-articles/audio/540cc8cb48e3e80200000001/89a7eac8-9363-44ea-9624-0b107b4fe221.mp3"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"voice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Salli"</span><span class="w">
+                </span><span class="nt">"voice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Salli"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-11T20:10:43.653Z"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"by Brent Simmons\nIt Will Be Trump\nThe South Carolina primary is where the establishment fixes the errors of Iowa and New Hampshire. It's Lee Atwater's..."</span><span class="p">,</span><span class="w">
@@ -897,12 +912,12 @@ Remember — For attributes, see <a href="#retrieve-an-article">Retrieve an Arti
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"audio"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"audio"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mf">60.944333</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.amazonaws.com/nareta-articles/audio/55af0a83157eed030000011e/61e7b167-b3f9-4d21-b2b2-2f184242b5cc.mp3"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"voice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brian"</span><span class="w">
-
-                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"voice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brian"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
             </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-06T14:51:26.342Z"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"In The Wall Street Journal, Joe Queenan says Donald Trump clearly works for Hillary. When Clinton wins, Trump gets to install luxury condos in the Washington Monument."</span><span class="p">,</span><span class="w">
             </span><span class="nt">"favicon"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
