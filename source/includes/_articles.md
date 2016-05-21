@@ -53,7 +53,8 @@ curl --request GET \
     "audio": {
         "length": 77.635918,
         "url": "https://s3.amazonaws.com/nareta-articles/accounts/540cc8cb48e3e80200000001/145669484056d366369ba562.mp3",
-        "voice": "Ava"
+        "voice": "Ava",
+        "rate": 1
     },
     "created": "2016-02-28T21:27:18.724Z",
     "description": "Narro is the simple way to listen to the web - a text to speech podcast app. Narro will take your bookmarked articles and read them back to you as a podcast.",
@@ -96,6 +97,7 @@ Name | Type | Description
 active | boolean | Indicates whether this article is available in the user's podcast feed
 audio.url | string | URL to the article's audio MP3 file
 audio.length | number | Length of article MP3, in seconds
+audio.rate | number | Reading rate of article, expressed in ratio to 'normal'
 audio.voice | string | Voice used to read article
 created | timestamp | ISO-formatted creation datetime
 description | string | Extracted article description
@@ -168,7 +170,8 @@ curl --request GET \
             "audio": {
                 "length": 77.635918,
                 "url": "https://s3.amazonaws.com/nareta-articles/accounts/540cc8cb48e3e80200000001/145669484056d366369ba562.mp3",
-                "voice": "Ava"
+                "voice": "Ava",
+                "rate": 1
             },
             "created": "2016-02-28T21:27:18.724Z",
             "description": "Narro is the simple way to listen to the web - a text to speech podcast app. Narro will take your bookmarked articles and read them back to you as a podcast.",

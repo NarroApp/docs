@@ -57,6 +57,7 @@ curl --request GET \
     "modified": "2016-02-28T20:18:24.349Z",
     "pro": true,
     "vanity": "vanity123",
+    "rate": 1,
     "voices": [
         {
             "gender": "Male",
@@ -93,3 +94,4 @@ modified | timestamp | Date of last modification, formatted to ISO datetime
 pro | boolean | Indicates whether the account is Pro-level
 vanity | string | Unique ID used for the account's public podcast URL
 voices | array | Chosen voices to be used for readings under this account
+rate | number | Chosen rate for readings under this account

@@ -55,7 +55,8 @@ curl --request GET \
             "audio": {
                 "length": 332.956735,
                 "url": "https://s3.amazonaws.com/nareta-articles/audio/540cc8cb48e3e80200000001/30460753-b4b5-468d-8a4d-dabcb384dc1a.mp3",
-                "voice": "Salli"
+                "voice": "Salli",
+                "rate": 1
             },
             "created": "2016-02-23T17:31:11.925Z",
             "description": "By Miranda Popkey \u00a0 \u00a0\n\u00a0\u00a0\nCyclone Winston, the second most powerful storm ever recorded in the South Pacific, made landfall in Fiji with 40-foot waves ...",
@@ -74,7 +75,8 @@ curl --request GET \
             "audio": {
                 "length": 65.201633,
                 "url": "https://s3.amazonaws.com/nareta-articles/audio/540cc8cb48e3e80200000001/89a7eac8-9363-44ea-9624-0b107b4fe221.mp3",
-                "voice": "Salli"
+                "voice": "Salli",
+                "rate": 1
             },
             "created": "2016-02-11T20:10:43.653Z",
             "description": "by Brent Simmons\nIt Will Be Trump\nThe South Carolina primary is where the establishment fixes the errors of Iowa and New Hampshire. It's Lee Atwater's...",

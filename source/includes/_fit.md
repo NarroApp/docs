@@ -52,12 +52,12 @@ curl --request GET \
     "data": [
         {
             "active": true,
-                "audio": {
+            "audio": {
                 "length": 60.944333,
                 "url": "https://s3.amazonaws.com/nareta-articles/audio/55af0a83157eed030000011e/61e7b167-b3f9-4d21-b2b2-2f184242b5cc.mp3",
-                "voice": "Brian"
-            
-                },
+                "voice": "Brian",
+                "rate": 1
+            },
             "created": "2015-08-06T14:51:26.342Z",
             "description": "In The Wall Street Journal, Joe Queenan says Donald Trump clearly works for Hillary. When Clinton wins, Trump gets to install luxury condos in the Washington Monument.",
             "favicon": null,
